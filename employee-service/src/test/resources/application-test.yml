@@ -1,0 +1,30 @@
+# src/test/resources/application-test.yml
+spring:
+  # turn off JDBC/JPA/Flyway so no database is needed
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  # prevent test context from contacting Cloud Config
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: false
+
+# also tell Eureka itself to stay off
+eureka:
+  client:
+    enabled: false
+
+# keep test logs quieter
+logging:
+  level:
+    root: WARN
+    org.springframework.web: INFO

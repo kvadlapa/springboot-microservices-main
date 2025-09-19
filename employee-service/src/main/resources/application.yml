@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: employee-service
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+    config:
+          fail-fast: true      # acceptance: fail to boot if config-server is down
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh,loggers

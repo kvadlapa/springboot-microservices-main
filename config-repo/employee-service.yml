@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: employee-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: pppp
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: employee
+      open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:/db/migration
+    schemas: employee
+    default-schema: employee
+    table: flyway_schema_history_employees
+    create-schemas: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    validate-migration-naming: true
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.example.employee: INFO

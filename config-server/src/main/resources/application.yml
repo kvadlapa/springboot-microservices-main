@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native         # use a local folder instead of Git for the demo
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: /Users/kirankumarreddyvadlapally/Downloads/springboot-microservices-main/config-repo   # relative to the server module
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
