@@ -7,15 +7,20 @@ A realistic microservices starter with:
 - **Services**: Employee + Department (each with Postgres + Flyway)
 - **DB**: Postgres connection is shared, with **separate schemas** per service
 - **Migrations**: Flyway (`classpath:/db/migration`)
+- **Centralized config**: Spring Cloud Config Server (config-server) + config-repo folder
+- **Project-service**: Projects & Members
+- **Docs**: OpenAPI/Swagger UI per service
+- **Error model**: Global ProblemDetail responses
+- **Tests**: Unit, WebMvc slice, and SpringBootTest without DB
 
 ## Prerequisites
 
-- Java 17
+- Java 21
 - Maven 3.8+
 - Postgres running locally and accessible at (you can set it up by yourself):
   - `jdbc:postgresql://localhost:5432/postgres`
   - username: `postgres`
-  - password: `123456!`
+  - password: `pppp`
 
 > Adjust credentials in each service's `application.yml` if yours differ.
 
@@ -31,6 +36,7 @@ mvn -pl api-gateway spring-boot:run
 # 3) Start services (can be in any order after discovery is up)
 mvn -pl department-service spring-boot:run
 mvn -pl employee-service spring-boot:run
+mvn -pl project-service spring-boot:run
 ```
 
 Eureka dashboard: http://localhost:8761
@@ -44,6 +50,7 @@ OpenAPI UIs (service level):
 
 - Employee: http://localhost:8081/swagger-ui.html
 - Department: http://localhost:8082/swagger-ui.html
+- Project: http://localhost:8084/swagger-ui/index.html
 
 ## Notes
 
@@ -55,6 +62,7 @@ OpenAPI UIs (service level):
   - Gateway: 8080
   - Employee: 8081
   - Department: 8082
+  - Project: 8084
 - After you start the services, please make sure you are able to execute the following code:
   - Employees Service
     - curl -s http://localhost:8080/employees

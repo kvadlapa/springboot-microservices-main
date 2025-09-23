@@ -1,0 +1,18 @@
+server.port: 8084
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: pppp
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+    properties.hibernate.default_schema: project
+  flyway:
+    enabled: true
+    schemas: project
+    default-schema: project
+    create-schemas: true
+management.endpoints.web.exposure.include: health,info,refresh
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
+employee.service-id: employee-service

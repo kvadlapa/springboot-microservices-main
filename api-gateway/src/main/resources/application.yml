@@ -4,3 +4,15 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8888"
 
+  cloud:
+    gateway:
+          routes:
+            - id: employee
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/api/v1/employees/**
+              filters:
+                - StripPrefix=2
+
+
+

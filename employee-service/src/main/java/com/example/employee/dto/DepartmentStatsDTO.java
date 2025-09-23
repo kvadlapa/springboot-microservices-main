@@ -1,4 +1,3 @@
 package com.example.employee.dto;
 
-public class DepartmentStatsDTO {
-}
+public record DepartmentStatsDTO(Long departmentId, long count) {}

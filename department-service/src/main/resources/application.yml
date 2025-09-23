@@ -1,15 +1,20 @@
 spring:
   application:
     name: DEPARTMENT-SERVICE
-  config:
-    import: "optional:configserver:http://localhost:8888"
-  cloud:
-    config:
-          fail-fast: true      # acceptance: fail to boot if config-server is down
-
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info,refresh,loggers
+
+---
+# Enable Config Server import for all profiles EXCEPT 'test'
+spring:
+  config:
+    activate:
+      on-profile: "!test"
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+    config:
+      fail-fast: true

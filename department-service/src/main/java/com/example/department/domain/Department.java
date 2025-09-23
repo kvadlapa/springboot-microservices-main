@@ -1,30 +1,25 @@
 package com.example.department.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
-@Table(name = "departments", schema = "department")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Table(name = "departments", schema = "department")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "name is required")
-    @Size(max = 120)
-    @Column(nullable = false, length = 120)
+    @Column(nullable = false, length = 150)
     private String name;
 
-    //Added
-    @NotBlank(message = "code is required")
-    @Size(max = 20)
-    @Column(nullable = false, length = 20)   // DB unique index added via Flyway below
-    private String code;
+    @Column(nullable = false, length = 40)
+    private String code; // unique
 
-    @Size(max = 2000)
-    @Column(columnDefinition = "text")
+    @Column(length = 500)
     private String description;
+
+    @Column(name = "manager_email", length = 200)
+    private String managerEmail;
 }

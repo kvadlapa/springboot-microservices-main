@@ -1,9 +1,10 @@
+# department-service/src/test/resources/application-test.yml
 spring:
   config:
-    import: []
+    import: ""        # clear any imports so config-server is never contacted
   cloud:
     config:
-      enabled: false
+      enabled: false  # disable Spring Cloud Config in tests
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
